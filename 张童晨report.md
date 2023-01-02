@@ -19,17 +19,15 @@ sudo docker run -d --name neo4j-4.4.12-container \
 使用neo4j库编写python脚本将获得的数据导入到neo4j数据库中
 ```sh
 python ./src/create_graph.py
-
 ```
 
 ### 知识图谱可视化与查询
 导入了neo4j数据库之后，可以使用网页连接设置的端口进行数据库操作，如显示所有节点
 ```neo4j
-MATCH (n) RETURN (n)
+MATCH (n) RETURN (n) LIMIT 500
 ```
 结果如下
-<!-- TODO graph -->
-
+![img_part_graph](img/part_graph.png)
 ### 知识问答
 使用上面建立的知识图谱，可以进行知识问答，如询问：“性别为男性的有谁？”提取出关键词“性别”和“男性”，作为输入即可获得答案，如下
 ```python
@@ -37,4 +35,5 @@ result = session.execute_read(relation_name_y_query_name_x, relation="性别", n
 for x in result:
     print(x)
 ```
-结果如下
+部分结果如下
+![img_part_answer](img/part_answer.png)
